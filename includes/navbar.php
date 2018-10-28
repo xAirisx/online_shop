@@ -1,4 +1,5 @@
 <header class="main-header">
+<link rel="stylesheet" type="text/css" href="includes/main.css">
   <nav class="navbar navbar-static-top">
     <div class="container">
       <div class="navbar-header">
@@ -71,13 +72,13 @@
               echo '
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="'.$image.'" class="user-image" alt="User Image">
+                    <img src="'.$image.'" class="user-image profileImageNavbar" alt="User Image">
                     <span class="hidden-xs">'.$user['firstname'].' '.$user['lastname'].'</span>
                   </a>
                   <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                      <img src="'.$image.'" class="img-circle" alt="User Image">
+                      <img src="'.$image.'" class="img-circle profileImageDropdown" alt="User Image">
 
                       <p>
                         '.$user['firstname'].' '.$user['lastname'].'

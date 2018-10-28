@@ -1,6 +1,7 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-blue layout-top-nav">
+<link rel="stylesheet" type="text/css" href="includes/main.css">
 <div class="wrapper">
 
 	<?php include 'includes/navbar.php'; ?>
@@ -59,7 +60,7 @@
 	       							<div class='col-sm-4'>
 	       								<div class='box box-solid'>
 		       								<div class='box-body prod-body'>
-		       									<img src='".$image."' width='100%' height='230px' class='thumbnail'>
+		       									<img src='".$image."' width='100%' height='230px' class='thumbnail center contain'>
 		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
