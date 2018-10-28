@@ -11,7 +11,7 @@
 		$conn = $pdo->open();
 
 		try{
-			$stmt = $conn->prepare("UPDATE user SET photo=:photo WHERE id=:id");
+			$stmt = $conn->prepare("UPDATE users SET photo=:photo WHERE id=:id");
 			$stmt->execute(['photo'=>$filename, 'id'=>$id]);
 			$_SESSION['success'] = 'User photo updated successfully';
 		}

@@ -12,7 +12,7 @@
 
 		$conn = $pdo->open();
 
-		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM product WHERE slug=:slug");
+		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products WHERE slug=:slug");
 		$stmt->execute(['slug'=>$slug]);
 		$row = $stmt->fetch();
 
@@ -30,7 +30,7 @@
 			}
 
 			try{
-				$stmt = $conn->prepare("INSERT INTO product (category_id, name, description, slug, price, photo) VALUES (:category, :name, :description, :slug, :price, :photo)");
+				$stmt = $conn->prepare("INSERT INTO products (category_id, name, description, slug, price, photo) VALUES (:category, :name, :description, :slug, :price, :photo)");
 				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename]);
 				$_SESSION['success'] = 'Product added successfully';
 

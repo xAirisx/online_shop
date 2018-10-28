@@ -16,7 +16,7 @@
 	       			
 	       			$conn = $pdo->open();
 
-	       			$stmt = $conn->prepare("SELECT COUNT(*) AS numrows FROM product WHERE name LIKE :keyword");
+	       			$stmt = $conn->prepare("SELECT COUNT(*) AS numrows FROM products WHERE name LIKE :keyword");
 	       			$stmt->execute(['keyword' => '%'.$_POST['keyword'].'%']);
 	       			$row = $stmt->fetch();
 	       			if($row['numrows'] < 1){
@@ -26,7 +26,7 @@
 	       				echo '<h1 class="page-header">Search results for <i>'.$_POST['keyword'].'</i></h1>';
 		       			try{
 		       			 	$inc = 3;	
-						    $stmt = $conn->prepare("SELECT * FROM product WHERE name LIKE :keyword");
+						    $stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE :keyword");
 						    $stmt->execute(['keyword' => '%'.$_POST['keyword'].'%']);
 					 
 						    foreach ($stmt as $row) {

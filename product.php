@@ -6,7 +6,7 @@
 
 	try{
 		 		
-	    $stmt = $conn->prepare("SELECT *, product.name AS prodname, category.name AS catname, product.id AS prodid FROM product LEFT JOIN category ON category.id=product.category_id WHERE slug = :slug");
+	    $stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname, products.id AS prodid FROM products LEFT JOIN category ON category.id=products.category_id WHERE slug = :slug");
 	    $stmt->execute(['slug' => $slug]);
 	    $product = $stmt->fetch();
 		
@@ -18,11 +18,11 @@
 	//page view
 	$now = date('Y-m-d');
 	if($product['date_view'] == $now){
-		$stmt = $conn->prepare("UPDATE product SET views_today=views_today+1 WHERE id=:id");
+		$stmt = $conn->prepare("UPDATE products SET views_today=views_today+1 WHERE id=:id");
 		$stmt->execute(['id'=>$product['prodid']]);
 	}
 	else{
-		$stmt = $conn->prepare("UPDATE product SET views_today=1, date_view=:now WHERE id=:id");
+		$stmt = $conn->prepare("UPDATE products SET views_today=1, date_view=:now WHERE id=:id");
 		$stmt->execute(['id'=>$product['prodid'], 'now'=>$now]);
 	}
 

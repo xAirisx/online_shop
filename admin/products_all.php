@@ -5,7 +5,7 @@
 
 	$conn = $pdo->open();
 
-	$stmt = $conn->prepare("SELECT * FROM product");
+	$stmt = $conn->prepare("SELECT * FROM products");
 	$stmt->execute();
 	foreach($stmt as $row){
 		$output .= "

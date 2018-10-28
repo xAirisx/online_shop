@@ -11,7 +11,7 @@
 
 		$conn = $pdo->open();
 
-		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM user WHERE email=:email");
+		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users WHERE email=:email");
 		$stmt->execute(['email'=>$email]);
 		$row = $stmt->fetch();
 
@@ -26,7 +26,7 @@
 				move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
 			}
 			try{
-				$stmt = $conn->prepare("INSERT INTO user (email, password, firstname, lastname, address, contact_info, photo, status, created_on) VALUES (:email, :password, :firstname, :lastname, :address, :contact, :photo, :status, :created_on)");
+				$stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname, address, contact_info, photo, status, created_on) VALUES (:email, :password, :firstname, :lastname, :address, :contact, :photo, :status, :created_on)");
 				$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'address'=>$address, 'contact'=>$contact, 'photo'=>$filename, 'status'=>1, 'created_on'=>$now]);
 				$_SESSION['success'] = 'User added successfully';
 

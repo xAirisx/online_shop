@@ -99,7 +99,7 @@
 
                     try{
                       $now = date('Y-m-d');
-                      $stmt = $conn->prepare("SELECT * FROM product $where");
+                      $stmt = $conn->prepare("SELECT * FROM products $where");
                       $stmt->execute();
                       foreach($stmt as $row){
                         $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/noimage.jpg';

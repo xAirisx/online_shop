@@ -6,7 +6,7 @@
 		
 		$conn = $pdo->open();
 
-		$stmt = $conn->prepare("SELECT *, product.id AS prodid, product.name AS prodname, category.name AS catname FROM product LEFT JOIN category ON category.id=product.category_id WHERE product.id=:id");
+		$stmt = $conn->prepare("SELECT *, products.id AS prodid, products.name AS prodname, category.name AS catname FROM products LEFT JOIN category ON category.id=products.category_id WHERE products.id=:id");
 		$stmt->execute(['id'=>$id]);
 		$row = $stmt->fetch();
 		

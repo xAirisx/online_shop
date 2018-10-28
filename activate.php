@@ -13,7 +13,7 @@
 	else{
 		$conn = $pdo->open();
 
-		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM user WHERE activate_code=:code AND id=:id");
+		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users WHERE activate_code=:code AND id=:id");
 		$stmt->execute(['code'=>$_GET['code'], 'id'=>$_GET['user']]);
 		$row = $stmt->fetch();
 
@@ -29,7 +29,7 @@
 			}
 			else{
 				try{
-					$stmt = $conn->prepare("UPDATE user SET status=:status WHERE id=:id");
+					$stmt = $conn->prepare("UPDATE users SET status=:status WHERE id=:id");
 					$stmt->execute(['status'=>1, 'id'=>$row['id']]);
 					$output .= '
 						<div class="alert alert-success">

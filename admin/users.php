@@ -64,7 +64,7 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT * FROM user WHERE type=:type");
+                      $stmt = $conn->prepare("SELECT * FROM users WHERE type=:type");
                       $stmt->execute(['type'=>0]);
                       foreach($stmt as $row){
                         $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/profile.jpg';

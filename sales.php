@@ -9,17 +9,17 @@
 
 		try{
 			
-			$stmt = $conn->prepare("INSERT INTO order (user_id, pay_id, date) VALUES (:user_id, :pay_id, :date)");
-			$stmt->execute(['user_id'=>$user['id'], 'pay_id'=>$payid, 'date'=>$date]);
-			$orderid = $conn->lastInsertId();
+			$stmt = $conn->prepare("INSERT INTO sales (user_id, pay_id, sales_date) VALUES (:user_id, :pay_id, :sales_date)");
+			$stmt->execute(['user_id'=>$user['id'], 'pay_id'=>$payid, 'sales_date'=>$date]);
+			$salesid = $conn->lastInsertId();
 			
 			try{
-				$stmt = $conn->prepare("SELECT * FROM cart LEFT JOIN product ON product.id=cart.product_id WHERE user_id=:user_id");
+				$stmt = $conn->prepare("SELECT * FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user_id");
 				$stmt->execute(['user_id'=>$user['id']]);
 
 				foreach($stmt as $row){
-					$stmt = $conn->prepare("INSERT INTO details (order_id, product_id, quantity) VALUES (:order_id, :product_id, :quantity)");
-					$stmt->execute(['order_id'=>$orderid, 'product_id'=>$row['product_id'], 'quantity'=>$row['quantity']]);
+					$stmt = $conn->prepare("INSERT INTO details (sales_id, product_id, quantity) VALUES (:sales_id, :product_id, :quantity)");
+					$stmt->execute(['sales_id'=>$salesid, 'product_id'=>$row['product_id'], 'quantity'=>$row['quantity']]);
 				}
 
 				$stmt = $conn->prepare("DELETE FROM cart WHERE user_id=:user_id");
