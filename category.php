@@ -5,7 +5,7 @@
 	$conn = $pdo->open();
 
 	try{
-		$stmt = $conn->prepare("SELECT * FROM category WHERE description = :slug");
+		$stmt = $conn->prepare("SELECT * FROM category WHERE slug = :slug");
 		$stmt->execute(['slug' => $slug]);
 		$cat = $stmt->fetch();
 		$catid = $cat['id'];

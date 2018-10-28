@@ -17,7 +17,7 @@
 		}
 		else{
 			try{
-				$stmt = $conn->prepare("INSERT INTO category (name, description) VALUES (:name, :slug)");
+				$stmt = $conn->prepare("INSERT INTO category (name, slug) VALUES (:name, :slug)");
 				$stmt->execute(['name'=>$name, 'slug'=>slugify($name)]);
 				$_SESSION['success'] = 'Category added successfully';
 			}

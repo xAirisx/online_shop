@@ -49,14 +49,14 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` varchar(150) DEFAULT NULL
+  `slug` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `description`) VALUES
+INSERT INTO `category` (`id`, `name`, `slug`) VALUES
 (1, 'Laptops', 'laptops'),
 (2, 'Desktop PC', 'desktop-pc'),
 (3, 'Tablets', 'tablets'),
