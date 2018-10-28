@@ -90,8 +90,8 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
 (5, 3, 6,1); 
 
 INSERT INTO `sales` (`id`, `user_id`, `pay_id`, `sales_date`) VALUES 
-(1, 2, '1', '2018-10-10'), 
-(2, 3, '2', '2018-10-9'); 
+(1, 2, '1540732415816', '2018-10-10'), 
+(2, 3, '1540732415815', '2018-10-9'); 
 
 INSERT INTO `details` (`id`, `sales_id`, `product_id`, `quantity`) VALUES 
 (1, 1, 1,1), 
