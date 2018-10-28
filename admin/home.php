@@ -62,7 +62,7 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id");
+                $stmt = $conn->prepare("SELECT * FROM product_order LEFT JOIN product ON product.id=product_order.product_id");
                 $stmt->execute();
 
                 $total = 0;
@@ -86,7 +86,7 @@
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products");
+                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM product");
                 $stmt->execute();
                 $prow =  $stmt->fetch();
 
@@ -106,7 +106,7 @@
           <div class="small-box bg-yellow">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users");
+                $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM user");
                 $stmt->execute();
                 $urow =  $stmt->fetch();
 
@@ -126,8 +126,8 @@
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
-                $stmt->execute(['sales_date'=>$today]);
+                $stmt = $conn->prepare("SELECT * FROM product_order LEFT JOIN order ON order.id=product_order.order_id LEFT JOIN product ON product.id=product_order.product_id WHERE date=:date");
+                $stmt->execute(['date'=>$today]);
 
                 $total = 0;
                 foreach($stmt as $trow){
@@ -194,17 +194,17 @@
 <!-- Chart Data -->
 <?php
   $months = array();
-  $sales = array();
+  $order = array();
   for( $m = 1; $m <= 12; $m++ ) {
     try{
-      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
+      $stmt = $conn->prepare("SELECT * FROM product_order LEFT JOIN order ON order.id=product_order.order_id LEFT JOIN product ON product.id=product_order.product_id WHERE MONTH(date)=:month AND YEAR(date)=:year");
       $stmt->execute(['month'=>$m, 'year'=>$year]);
       $total = 0;
       foreach($stmt as $srow){
         $subtotal = $srow['price']*$srow['quantity'];
         $total += $subtotal;    
       }
-      array_push($sales, round($total, 2));
+      array_push($order, round($total, 2));
     }
     catch(PDOException $e){
       echo $e->getMessage();
@@ -216,7 +216,7 @@
   }
 
   $months = json_encode($months);
-  $sales = json_encode($sales);
+  $order = json_encode($order);
 
 ?>
 <!-- End Chart Data -->
@@ -238,7 +238,7 @@ $(function(){
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data                : <?php echo $sales; ?>
+        data                : <?php echo $order; ?>
       }
     ]
   }

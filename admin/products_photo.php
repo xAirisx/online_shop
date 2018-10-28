@@ -7,7 +7,7 @@
 
 		$conn = $pdo->open();
 
-		$stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
+		$stmt = $conn->prepare("SELECT * FROM product WHERE id=:id");
 		$stmt->execute(['id'=>$id]);
 		$row = $stmt->fetch();
 
@@ -18,7 +18,7 @@
 		}
 		
 		try{
-			$stmt = $conn->prepare("UPDATE products SET photo=:photo WHERE id=:id");
+			$stmt = $conn->prepare("UPDATE product SET photo=:photo WHERE id=:id");
 			$stmt->execute(['photo'=>$new_filename, 'id'=>$id]);
 			$_SESSION['success'] = 'Product photo updated successfully';
 		}

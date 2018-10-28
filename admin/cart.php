@@ -7,7 +7,7 @@
   else{
     $conn = $pdo->open();
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE id=:id");
     $stmt->execute(['id'=>$_GET['user']]);
     $user = $stmt->fetch();
 
@@ -79,7 +79,7 @@
                     $conn = $pdo->open();
 
                     try{
-                      $stmt = $conn->prepare("SELECT *, cart.id AS cartid FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user_id");
+                      $stmt = $conn->prepare("SELECT *, cart.id AS cartid FROM cart LEFT JOIN product ON product.id=cart.product_id WHERE user_id=:user_id");
                       $stmt->execute(['user_id'=>$user['id']]);
                       foreach($stmt as $row){
                         echo "

@@ -83,10 +83,10 @@
 	        						$conn = $pdo->open();
 
 	        						try{
-	        							$stmt = $conn->prepare("SELECT * FROM sales WHERE user_id=:user_id ORDER BY sales_date DESC");
+	        							$stmt = $conn->prepare("SELECT * FROM order WHERE user_id=:user_id ORDER BY date DESC");
 	        							$stmt->execute(['user_id'=>$user['id']]);
 	        							foreach($stmt as $row){
-	        								$stmt2 = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
+	        								$stmt2 = $conn->prepare("SELECT * FROM details LEFT JOIN product ON product.id=details.product_id WHERE order_id=:id");
 	        								$stmt2->execute(['id'=>$row['id']]);
 	        								$total = 0;
 	        								foreach($stmt2 as $row2){
@@ -96,7 +96,7 @@
 	        								echo "
 	        									<tr>
 	        										<td class='hidden'></td>
-	        										<td>".date('M d, Y', strtotime($row['sales_date']))."</td>
+	        										<td>".date('M d, Y', strtotime($row['date']))."</td>
 	        										<td>".$row['pay_id']."</td>
 	        										<td>&#36; ".number_format($total, 2)."</td>
 	        										<td><button class='btn btn-sm btn-flat btn-info transact' data-id='".$row['id']."'><i class='fa fa-search'></i> View</button></td>

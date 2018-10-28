@@ -4,21 +4,21 @@
 	function generateRow($from, $to, $conn){
 		$contents = '';
 	 	
-		$stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id WHERE sales_date BETWEEN '$from' AND '$to' ORDER BY sales_date DESC");
+		$stmt = $conn->prepare("SELECT *, order.id AS orderid FROM order LEFT JOIN user ON user.id=order.user_id WHERE date BETWEEN '$from' AND '$to' ORDER BY date DESC");
 		$stmt->execute();
 		$total = 0;
 		foreach($stmt as $row){
-			$stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
-			$stmt->execute(['id'=>$row['salesid']]);
+			$stmt = $conn->prepare("SELECT * FROM product_order LEFT JOIN product ON product.id=product_order.product_id WHERE order_id=:id");
+			$stmt->execute(['id'=>$row['orderid']]);
 			$amount = 0;
-			foreach($stmt as $details){
-				$subtotal = $details['price']*$details['quantity'];
+			foreach($stmt as $product_order){
+				$subtotal = $product_order['price']*$product_order['quantity'];
 				$amount += $subtotal;
 			}
 			$total += $amount;
 			$contents .= '
 			<tr>
-				<td>'.date('M d, Y', strtotime($row['sales_date'])).'</td>
+				<td>'.date('M d, Y', strtotime($row['date'])).'</td>
 				<td>'.$row['firstname'].' '.$row['lastname'].'</td>
 				<td>'.$row['pay_id'].'</td>
 				<td align="right">&#36; '.number_format($amount, 2).'</td>
