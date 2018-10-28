@@ -17,7 +17,7 @@ CREATE TABLE `users` (
 CREATE TABLE `category` ( 
 `id` int PRIMARY KEY AUTO_INCREMENT, 
 `name` varchar(100) NOT NULL, 
-`slug` varchar(150) DEFAULT NULL 
+`slug` varchar(150) DEFAULT NULL UNIQUE 
 ); 
 
 CREATE TABLE `products` ( 
@@ -25,7 +25,7 @@ CREATE TABLE `products` (
 `category_id` int NOT NULL, 
 `name` text NOT NULL, 
 `description` text, 
-`slug` varchar(200) NOT NULL, 
+`slug` varchar(200) NOT NULL UNIQUE, 
 `price` double NOT NULL, 
 `photo` varchar(200) NOT NULL, 
 `date_view` date DEFAULT NULL, 
