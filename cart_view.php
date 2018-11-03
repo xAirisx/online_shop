@@ -31,7 +31,7 @@
 	        		</div>
 	        		<?php
 	        			if(isset($_SESSION['user'])){
-	        				echo '
+                                echo '
 	        					<div class="col-sm-2">
           			<div id="pay-button" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i> Pay</div>
         		</div>

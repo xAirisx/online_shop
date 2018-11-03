@@ -9,6 +9,10 @@
 		$price = $_POST['price'];
 		$description = $_POST['description'];
 		$filename = $_FILES['photo']['name'];
+		
+		if (!is_numeric($price)) {
+            $_SESSION['error'] = "Please enter valid price";
+		} else {
 
 		$conn = $pdo->open();
 
@@ -41,6 +45,7 @@
 		}
 
 		$pdo->close();
+		}
 	}
 	else{
 		$_SESSION['error'] = 'Fill up product form first';

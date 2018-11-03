@@ -77,7 +77,16 @@ function getCart(){
 		success: function(response){
 			$('#cart_menu').html(response.list);
 			$('.cart_count').html(response.count);
+			updatePayBtnVisibility();
 		}
 	});
+}
+
+function updatePayBtnVisibility() {
+    if($(".cart_count").html() > 0) {
+        $("#pay-button").show();
+    } else {
+        $("#pay-button").hide();
+    }
 }
 </script>
