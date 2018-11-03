@@ -4,7 +4,7 @@ Simple shop written on php for university
 Do not forget to remove "only_full_group_by" from sql_mode variable on sql server
 
 Admin credentials:
-admin@admin.com:password
+admin@gmail.com:admin
 
 Db schema for importing located in /database/ecomm.sql
 
