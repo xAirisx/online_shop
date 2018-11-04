@@ -70,7 +70,7 @@
 <script>
     //file type validation
 function validate () {
-        var input= $("photo"); 
+        var input= document.getElementById('photo');
         var fileMaxSize=2097151;
         var file = input.files[0];
         var imagefile = file.type;
