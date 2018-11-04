@@ -32,7 +32,7 @@
                   <label for="name" class="col-sm-1 control-label">Name</label>
 
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name" minlength="2" required>
                   </div>
 
                   <label for="category" class="col-sm-1 control-label">Category</label>
@@ -47,7 +47,7 @@
                   <label for="price" class="col-sm-1 control-label">Price</label>
 
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" id="price" name="price" required>
+                    <input type="number" class="form-control" id="price" name="price" min="1" required>
                   </div>
 
                   <label for="photo" class="col-sm-1 control-label">Photo</label>
@@ -59,7 +59,7 @@
                 <p><b>Description</b></p>
                 <div class="form-group">
                   <div class="col-sm-12">
-                    <textarea id="editor1" name="description" rows="10" cols="80" required></textarea>
+                    <textarea id="editor1" name="description" rows="10" cols="80" minlength="2" required></textarea>
                   </div>
                   
                 </div>

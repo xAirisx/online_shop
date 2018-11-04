@@ -84,28 +84,28 @@
                     <label for="edit_email" class="col-sm-3 control-label">Email</label>
 
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" id="edit_email" name="email">
+                      <input type="email" class="form-control" id="edit_email" name="email" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_password" class="col-sm-3 control-label">Password</label>
 
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" id="edit_password" minlength="5" name="password">
+                      <input type="password" class="form-control" id="edit_password" minlength="5" name="password" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Firstname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_firstname" minlength="2" name="firstname">
+                      <input type="text" class="form-control" id="edit_firstname" minlength="2" name="firstname" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_lastname" class="col-sm-3 control-label">Lastname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_lastname" minlength="2" name="lastname">
+                      <input type="text" class="form-control" id="edit_lastname" minlength="2" name="lastname" required>
                     </div>
                 </div>
                 <div class="form-group">

@@ -13,7 +13,7 @@
                     <label for="name" class="col-sm-3 control-label">Name</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="name" name="name" required>
+                      <input type="text" class="form-control" id="name" name="name" minlength="2" required>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <label for="edit_name" class="col-sm-3 control-label">Name</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_name" name="name">
+                      <input type="text" class="form-control" id="edit_name" name="name" minlength="2" required>
                     </div>
                 </div>
             </div>
