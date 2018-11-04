@@ -69,7 +69,7 @@
 </div>
 <script>
     //file type validation
-function validate () {
+function validate (input) {
         var input= document.getElementById('photo_new');
         var fileMaxSize=2097151;
         var file = input.files[0];
@@ -77,7 +77,7 @@ function validate () {
         var match = ["image/jpeg", "image/png", "image/jpg"];
         if (!((imagefile === match[0]) || (imagefile === match[1]) || (imagefile === match[2]))) {
             alert('Please select a valid image file (JPEG/JPG/PNG).');
-            $("#photo_new").val('');
+            input.value='';
             return false;
         }else if (file.size>fileMaxSize){
             donotUploadFile('File size must be not more than 2 Mb');
@@ -85,9 +85,9 @@ function validate () {
     };
 
 
-function donotUploadFile(message) {
+function donotUploadFile(message, input) {
     alert(message);
-    $("#photo_new").val('');
+    input.value='';
     return false;
 }   
  </script>
