@@ -43,13 +43,13 @@
 		else{
 			foreach($_SESSION['cart'] as $row){
 				$output['count']++;
-				$stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname FROM products LEFT JOIN category ON category.id=products.category_id WHERE products.id=:id");
+				$stmt = $conn->prepare("SELECT *, products.name AS prodname, category.name AS catname, products.slug AS prodslug FROM products LEFT JOIN category ON category.id=products.category_id WHERE products.id=:id");
 				$stmt->execute(['id'=>$row['productid']]);
 				$product = $stmt->fetch();
 				$image = (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg';
 				$output['list'] .= "
 					<li>
-						<a href='product.php?product=".$product['slug']."'>
+						<a href='product.php?product=".$product['prodslug']."'>
 							<div class='pull-left'>
 								<img src='".$image."' class='img-circle' alt='User Image'>
 							</div>
