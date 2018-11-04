@@ -52,10 +52,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="photo" class="col-sm-3 control-label">Photo</label>
+                    <label for="photo_new" class="col-sm-3 control-label">Photo</label>
 
                     <div class="col-sm-9">
-                      <input type="file" id="photo" name="photo" onchange="validate()">
+                      <input type="file" id="photo_new" name="photo" onchange="validate()">
                     </div>
                 </div>
             </div>
@@ -70,14 +70,14 @@
 <script>
     //file type validation
 function validate () {
-        var input= document.getElementById('photo');
+        var input= document.getElementById('photo_new');
         var fileMaxSize=2097151;
         var file = input.files[0];
         var imagefile = file.type;
         var match = ["image/jpeg", "image/png", "image/jpg"];
         if (!((imagefile === match[0]) || (imagefile === match[1]) || (imagefile === match[2]))) {
             alert('Please select a valid image file (JPEG/JPG/PNG).');
-            $("#photo").val('');
+            $("#photo_new").val('');
             return false;
         }else if (file.size>fileMaxSize){
             donotUploadFile('File size must be not more than 2 Mb');
@@ -87,7 +87,7 @@ function validate () {
 
 function donotUploadFile(message) {
     alert(message);
-    $("#photo").val('');
+    $("#photo_new").val('');
     return false;
 }   
  </script>
