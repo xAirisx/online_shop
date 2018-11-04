@@ -20,21 +20,21 @@
                     <label for="password" class="col-sm-3 control-label">Password</label>
 
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" id="password" name="password" min="5" required>
+                      <input type="password" class="form-control" id="password" name="password" minlength="5" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="firstname" name="firstname" min="2" required>
+                      <input type="text" class="form-control" id="firstname" name="firstname" minlength="2" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastname" class="col-sm-3 control-label">Lastname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="lastname" name="lastname" min="2" required>
+                      <input type="text" class="form-control" id="lastname" name="lastname" minlength="2" required>
                     </div>
                 </div>
                 <div class="form-group">
