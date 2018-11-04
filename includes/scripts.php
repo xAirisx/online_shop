@@ -89,4 +89,24 @@ function updatePayBtnVisibility() {
         $("#pay-button").hide();
     }
 }
+
+ //file type validation
+function validate (input) {
+        var fileMaxSize=2097151;
+        var file = input.files[0];
+        var imagefile = file.type;
+        var match = ["image/jpeg", "image/png", "image/jpg"];
+        if (!((imagefile === match[0]) || (imagefile === match[1]) || (imagefile === match[2]))) {
+            donotUploadFile('Please select a valid image file (JPEG/JPG/PNG).', input);
+        }else if (file.size>fileMaxSize){
+            donotUploadFile('File size must be not more than 2 Mb', input);
+        }
+    };
+
+
+function donotUploadFile(message, input) {
+    alert(message);
+    input.value='';
+    return false;
+}   
 </script>
