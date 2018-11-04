@@ -83,7 +83,6 @@ function validate () {
             donotUploadFile('File size must be not more than 2 Mb');
         }
     };
-});
 
 
 function donotUploadFile(message) {
