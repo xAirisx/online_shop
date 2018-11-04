@@ -77,17 +77,17 @@ function validate (input) {
         var match = ["image/jpeg", "image/png", "image/jpg"];
         if (!((imagefile === match[0]) || (imagefile === match[1]) || (imagefile === match[2]))) {
             alert('Please select a valid image file (JPEG/JPG/PNG).');
-            input.value="";
+            input.value='';
             return false;
         }else if (file.size>fileMaxSize){
-            donotUploadFile('File size must be not more than 2 Mb');
+            donotUploadFile('File size must be not more than 2 Mb', input);
         }
     };
 
 
 function donotUploadFile(message, input) {
     alert(message);
-    input.value="";
+    input.value='';
     return false;
 }   
  </script>
