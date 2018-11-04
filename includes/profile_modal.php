@@ -91,7 +91,7 @@
                     <label for="photo" class="col-sm-3 control-label">Photo</label>
 
                     <div class="col-sm-9">
-                      <input type="file" id="photo" name="photo">
+                      <input type="file" id="photo" name="photo" onchange="validate(this)">
                     </div>
                 </div>
                 <hr>
