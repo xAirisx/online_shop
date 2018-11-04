@@ -67,7 +67,32 @@
         </div>
     </div>
 </div>
+<script>
+ $(document).ready(function () {
 
+    //file type validation
+    $("#photo").change(function () {
+        var fileMaxSize=2097151;
+        var file = this.files[0];
+        var imagefile = file.type;
+        var match = ["image/jpeg", "image/png", "image/jpg"];
+        if (!((imagefile === match[0]) || (imagefile === match[1]) || (imagefile === match[2]))) {
+            alert('Please select a valid image file (JPEG/JPG/PNG).');
+            $("#photo").val('');
+            return false;
+        }else if (file.size>fileMaxSize){
+            donotUploadFile('File size must be not more than 2 Mb');
+        }
+    });
+});
+
+
+function donotUploadFile(message) {
+    alert(message);
+    $("#photo").val('');
+    return false;
+}   
+ </script>
 <!-- Edit -->
 <div class="modal fade" id="edit">
     <div class="modal-dialog">
@@ -91,21 +116,21 @@
                     <label for="edit_password" class="col-sm-3 control-label">Password</label>
 
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" id="edit_password" name="password">
+                      <input type="password" class="form-control" id="edit_password" minlength="5" name="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Firstname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_firstname" name="firstname">
+                      <input type="text" class="form-control" id="edit_firstname" minlength="2" name="firstname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_lastname" class="col-sm-3 control-label">Lastname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_lastname" name="lastname">
+                      <input type="text" class="form-control" id="edit_lastname" minlength="2" name="lastname">
                     </div>
                 </div>
                 <div class="form-group">
