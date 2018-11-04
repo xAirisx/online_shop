@@ -26,7 +26,7 @@ CREATE TABLE `products` (
 `name` text NOT NULL, 
 `description` text, 
 `slug` varchar(200) NOT NULL UNIQUE, 
-`price` double NOT NULL, 
+`price` int NOT NULL, 
 `photo` varchar(200) NOT NULL, 
 `date_view` date DEFAULT NULL, 
 `views_today` int NOT NULL DEFAULT '0' 
@@ -77,10 +77,10 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `slug`, `pri
 (3, 1, 'Practical Web 2.0 Applications with PHP', '<p>author: <strong>Quentin Zervaas</strong></p><p>pages :&nbsp;<em>356</em></p><p>year<em>:2018</em></p><p>&nbsp;</p>', 'practical-web-2-0-applications-php', 599, 'webphp.jpg', '2018-10-21', 2), 
 (4, 1, 'Java Cookbook', '<p>author: <strong>Ian F/ Darwin</strong></p><p>pages :&nbsp;<em>340</em></p><p>year<em>:2016</em></p><p>&nbsp;</p>', 'java-cookbook', 399, 'java-cookbook.jpg', '2018-05-10', 3), 
 (5, 1, 'The Complete Reference Java', '<p>author: <strong>Herbert Schildt</strong></p><p>pages :&nbsp;<em>590</em></p><p>year<em>:2018</em></p><p>&nbsp;</p>', 'complete-reference-java', 999, 'java_complete.jpg', '2018-07-09', 3), 
-(6, 2, 'Book for the Art Center', '<p>author: <strong>Karen Bertumond</strong></p><p>pages :&nbsp;<em>190</em></p><p>year<em>:2014</em></p><p>&nbsp;</p>', 'book-art-center', 449.99, 'art_center.jpg', '2018-10-10', 0), 
+(6, 2, 'Book for the Art Center', '<p>author: <strong>Karen Bertumond</strong></p><p>pages :&nbsp;<em>190</em></p><p>year<em>:2014</em></p><p>&nbsp;</p>', 'book-art-center', 449, 'art_center.jpg', '2018-10-10', 0), 
 (7, 2, 'Tell Me A Picture', '<p>author: <strong>Qunentin Blake</strong></p><p>pages :&nbsp;<em>390</em></p><p>year<em>:2014</em></p><p>&nbsp;</p>', 'tell-me-picture', 619, 'tell-me-picture.jpg', '2018-10-10', 0), 
-(8, 3, 'A Book About Lawyers', '<p>author: <strong>Jeafferson John Cordy</strong></p><p>pages :&nbsp;<em>490</em></p><p>year<em>:2018</em></p><p>&nbsp;</p>', 'book-about-lawyers', 549.99, 'lawers.jpg', '2018-10-10', 0), 
-(9, 4, 'Handbook of Transfusion Medicine', '<p>author: <strong>Dr. Derek Norfolk</strong></p><p>pages :&nbsp;<em>990</em></p><p>year<em>:2016</em></p><p>&nbsp;</p>', 'handbook-of-transfusion-medicine', 599.99, 'transfusion_medicine.jpeg', '2018-10-10', 0); 
+(8, 3, 'A Book About Lawyers', '<p>author: <strong>Jeafferson John Cordy</strong></p><p>pages :&nbsp;<em>490</em></p><p>year<em>:2018</em></p><p>&nbsp;</p>', 'book-about-lawyers', 549, 'lawers.jpg', '2018-10-10', 0), 
+(9, 4, 'Handbook of Transfusion Medicine', '<p>author: <strong>Dr. Derek Norfolk</strong></p><p>pages :&nbsp;<em>990</em></p><p>year<em>:2016</em></p><p>&nbsp;</p>', 'handbook-of-transfusion-medicine', 599, 'transfusion_medicine.jpeg', '2018-10-10', 0); 
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES 
 (1, 2, 1,1), 
