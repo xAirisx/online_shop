@@ -15,25 +15,9 @@
 		$_SESSION['lastname'] = $lastname;
 		$_SESSION['email'] = $email;
 
-		if(!isset($_SESSION['captcha'])){
-			require('recaptcha/src/autoload.php');		
-			$recaptcha = new \ReCaptcha\ReCaptcha('6LdM-3UUAAAAAFNE36TbECVFVoCGuritCLPrViXm', new \ReCaptcha\RequestMethod\SocketPost());
-			$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-
-			if (!$resp->isSuccess()){
-		  		$_SESSION['error'] = 'Please answer recaptcha correctly';
-		  		header('location: signup.php');	
-		  		exit();	
-		  	}	
-		  	else{
-		  		$_SESSION['captcha'] = time() + (10*60);
-		  	}
-
-		}
-
 		
 		if($password != $repassword){
-			$_SESSION['error'] = 'Passwords did not match';
+			$_SESSION['error'] = 'Пароли не совпадают!';
 			header('location: signup.php');
 		}
 		else{
@@ -44,7 +28,7 @@
 			$row = $stmt->fetch();
 			
 			if($row['numrows'] > 0){
-				$_SESSION['error'] = 'Email already taken';
+				$_SESSION['error'] = 'Email уже занят!';
 				header('location: signup.php');
 			}
 			
@@ -54,45 +38,18 @@
 
                 
 				try{
-					$stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname, created_on, address) VALUES (:email, :password, :firstname, :lastname, :now, :address)");
-					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'now'=>$now, 'address'=>""]);
-					$userid = $conn->lastInsertId();
-
-					try{
-					$stmt = $conn->prepare("UPDATE users SET status=:status WHERE id=:id");
-					$stmt->execute(['status'=>1, 'id'=>$row['id']]);
-					$output .= '
-						<div class="alert alert-success">
-			                <h4><i class="icon fa fa-check"></i> Success!</h4>
-			                Account activated - Email: <b>'.$email.'</b>.
-			            </div>
-			            <h4>You may <a href="login.php">Login</a> or back to <a href="index.php">Homepage</a>.</h4>
-					';
-                    }
-                    catch(PDOException $e){
-                        $output .= '
-                            <div class="alert alert-danger">
-                                <h4><i class="icon fa fa-warning"></i> Error!</h4>
-                                '.$e->getMessage().'
-                            </div>
-                            <h4>You may <a href="signup.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
-                        ';
-                    }
-				
-				
-
-
+						$stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname, created_on, address, status) VALUES (:email, :password, :firstname, :lastname, :now, :address, :status)");
+					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'now'=>$now, 'address'=>"", 'status'=>1]);
                 }
                 catch(PDOException $e) {
                     
                 }
-            
             }
     
         }
 	}
 	else{
-		$_SESSION['error'] = 'Fill up signup form first';
+		$_SESSION['error'] = 'Сначала заполниет форму!';
 		header('location: signup.php');
 	}
 	

@@ -1,78 +1,74 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-blue layout-top-nav">
-<link rel="stylesheet" type="text/css" href="includes/main.css">
-<div class="wrapper">
+
+
 
 	<?php include 'includes/navbar.php'; ?>
-	 
-	  <div class="content-wrapper">
-	    <div class="container">
+	<div class="container-fluid">
 
-	      <!-- Main content -->
-	      <section class="content">
-	        <div class="row">
-	        	<div class="col-sm-9">
-	        		<?php
+	 <?php
 	        			if(isset($_SESSION['error'])){
 	        				echo "
-	        					<div class='alert alert-danger'>
+	        				<div class='row'>
+	        					<div class='alert alert-danger' role='alert'>
 	        						".$_SESSION['error']."
 	        					</div>
+                            </div>
 	        				";
 	        				unset($_SESSION['error']);
 	        			}
 	        		?>
-	        		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		                <ol class="carousel-indicators">
-		                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-		                </ol>
-		                <div class="carousel-inner">
-		                  <div class="item active">
-		                    <img src="images/banner1.png" alt="First slide">
-		                  </div>
-		                  <div class="item">
-		                    <img src="images/banner2.png" alt="Second slide">
-		                  </div>
-		                </div>
-		                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-		                  <span class="fa fa-angle-left"></span>
-		                </a>
-		                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-		                  <span class="fa fa-angle-right"></span>
-		                </a>
-		            </div>
-		            <h2>Monthly Top Sellers</h2>
+	 <div class="row">
+    <div class="col-md-7 mx-auto mt-2">
+	 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner " >
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="images/banner1.png" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="images/banner2.png" alt="Second slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+        </div>
+         <div class="container">
+	    <div class="h2 row mt-4 font-weight-bold ">Лучшие товары месяца</div>
+             <div class="row mt-4">
 		       		<?php
 		       			$month = date('m');
 		       			$conn = $pdo->open();
 
 		       			try{
-		       			 	$inc = 3;	
+		       			 	
 						    $stmt = $conn->prepare("SELECT *, SUM(quantity) AS total_qty FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date) = '$month' GROUP BY details.product_id ORDER BY total_qty DESC LIMIT 6");
 						    $stmt->execute();
 						    foreach ($stmt as $row) {
 						    	$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
-						    	$inc = ($inc == 3) ? 1 : $inc + 1;
-	       						if($inc == 1) echo "<div class='row'>";
+						    	
+	       						
 	       						echo "
-	       							<div class='col-sm-4'>
-	       								<div class='box box-solid'>
-		       								<div class='box-body prod-body'>
-		       									<img src='".$image."' width='100%' height='230px' class='thumbnail center contain'>
-		       									<h5><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
-		       								</div>
-		       								<div class='box-footer'>
-		       									<b>&#36; ".number_format($row['price'])."</b>
-		       								</div>
-	       								</div>
-	       							</div>
+	       						<div class='col-md-4'>
+	       								<div class='card '>
+										  <img class='card-img-top' src='".$image."' alt='Card image cap'>
+										  <div class='card-body'>
+										    <h5 class='card-title text-dark'> <a clas='text-dark' href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
+                                            <b class='text-dark'>&#36;".number_format($row['price'])."</b>
+										  </div>
+											
+										</div>
+                                    </div>
 	       						";
-	       						if($inc == 3) echo "</div>";
+	       						
 						    }
-						    if($inc == 1) echo "<div class='col-sm-4'></div><div class='col-sm-4'></div></div>"; 
-							if($inc == 2) echo "<div class='col-sm-4'></div></div>";
+						    
 						}
 						catch(PDOException $e){
 							echo "There is some problem in connection: " . $e->getMessage();
@@ -81,18 +77,14 @@
 						$pdo->close();
 
 		       		?> 
-	        	</div>
-	        	<div class="col-sm-3">
-	        		<?php include 'includes/sidebar.php'; ?>
-	        	</div>
-	        </div>
-	      </section>
-	     
-	    </div>
-	  </div>
-  
-  	<?php include 'includes/footer.php'; ?>
-</div>
+	        	
+            </div>
+       </div>
+	 </div>
+    <?php include 'includes/sidebar.php'; ?>
+    </div>
+</div>	
+<?php include 'includes/footer.php'; ?>
 
 <?php include 'includes/scripts.php'; ?>
 </body>

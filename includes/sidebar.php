@@ -1,10 +1,8 @@
-<div class="row">
-	<div class="box box-solid">
-	  	<div class="box-header with-border">
-	    	<h3 class="box-title"><b>Most Viewed Today</b></h3>
-	  	</div>
-	  	<div class="box-body">
-	  		<ul id="trending">
+<div class="col-md-3 mt-4 mr-3">
+<ul class="list-group">
+<li class="list-group-item  list-group-item-info h3"><b>Рекомендуем вам</b></li>
+
+	  		
 	  		<?php
 	  			$now = date('Y-m-d');
 	  			$conn = $pdo->open();
@@ -12,12 +10,10 @@
 	  			$stmt = $conn->prepare("SELECT * FROM products WHERE date_view=:now ORDER BY views_today DESC LIMIT 10");
 	  			$stmt->execute(['now'=>$now]);
 	  			foreach($stmt as $row){
-	  				echo "<li><a href='product.php?product=".$row['slug']."'>".$row['name']."</a></li>";
+	  				echo "<li class='list-group-item '><a class='text-dark' href='product.php?product=".$row['slug']."'>".$row['name']."</a></li>";
 	  			}
 
 	  			$pdo->close();
 	  		?>
-	    	<ul>
-	  	</div>
-	</div>
+</ul>
 </div>

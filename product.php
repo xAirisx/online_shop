@@ -28,46 +28,23 @@
 
 ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue layout-top-nav">
-<link rel="stylesheet" type="text/css" href="includes/main.css">
-<div class="wrapper">
+<body class="hold-transition">
 
-	<?php include 'includes/navbar.php'; ?>
-	 
-	  <div class="content-wrapper">
-	    <div class="container">
+<?php include 'includes/navbar.php'; ?>
 
-	      <!-- Main content -->
-	      <section class="content">
-	        <div class="row">
-	        	<div class="col-sm-9">
+    <div class="container-fluid">
+
+	        <div class="row justify-content-md-center">
+	        	<div class="col-sm-6 mt-4">
 	        		<div class="callout" id="callout" style="display:none">
 	        			<button type="button" class="close"><span aria-hidden="true">&times;</span></button>
 	        			<span class="message"></span>
 	        		</div>
 		            <div class="row">
-		            	<div class="col-sm-6">
-		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%" class="zoom profileImage" data-magnify-src="images/large-<?php echo $product['photo']; ?>">
-		            		<br><br>
-		            		<form class="form-inline" id="productForm">
-		            			<div class="form-group">
-			            			<div class="input-group col-sm-5">
-			            				
-			            				<span class="input-group-btn">
-			            					<button type="button" id="minus" class="btn btn-default btn-flat btn-lg"><i class="fa fa-minus"></i></button>
-			            				</span>
-							          	<input type="text" name="quantity" id="quantity" class="form-control input-lg" value="1">
-							            <span class="input-group-btn">
-							                <button type="button" id="add" class="btn btn-default btn-flat btn-lg"><i class="fa fa-plus"></i>
-							                </button>
-							            </span>
-							            <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
-							        </div>
-			            			<button type="submit" class="btn btn-primary btn-lg btn-flat"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-			            		</div>
-		            		</form>
+		            	<div class="col-md-6">
+		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%">
 		            	</div>
-		            	<div class="col-sm-6">
+		            	<div class="col-md-6">
 		            		<h1 class="page-header"><?php echo $product['prodname']; ?></h1>
 		            		<h3><b>&#36; <?php echo number_format($product['price']); ?></b></h3>
 		            		<p><b>Category:</b> <a href="category.php?category=<?php echo $product['slug']; ?>"><?php echo $product['catname']; ?></a></p>
@@ -75,19 +52,31 @@
 		            		<p><?php echo $product['description']; ?></p>
 		            	</div>
 		            </div>
-		            <br>
+		            <div class="row mt-4">
+		            <form class="form-inline" id="productForm">
+                        <div class="form-group">
+                        <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group mr-2" role="group">
+                            <button type="button" id="minus" class="btn btn-light"><i class="fa fa-minus"></i></button>
+                            <input type="text" name="quantity" id="quantity" class="form-control" value="1">
+                            <button type="button" id="add" class="btn btn-light"><i class="fa fa-plus"></i></button>
+                            <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
+                            </div>
+                            </div>
+                            </div>
+                        <button type="submit" class="btn btn-lg btn-info"><i class="fa fa-shopping-cart"></i> В корзину</button>
+			            		
+                    </form>
+		            </div>
 	        	</div>
-	        	<div class="col-sm-3">
+	        
 	        		<?php include 'includes/sidebar.php'; ?>
-	        	</div>
+	        	
 	        </div>
-	      </section>
-	     
-	    </div>
-	  </div>
-  	<?php $pdo->close(); ?>
-  	<?php include 'includes/footer.php'; ?>
-</div>
+	      
+    </div>
+<?php $pdo->close(); ?>
+<?php include 'includes/footer.php'; ?>
 
 <?php include 'includes/scripts.php'; ?>
 <script>
