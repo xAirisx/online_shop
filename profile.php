@@ -8,36 +8,39 @@
 <body class="hold-transition">
 <?php include 'includes/navbar.php'; ?>
 	 
-<div class="container-fluid">
-        <div class="row ">
-	        	<div class="col-sm-9">
-	        		<?php
-	        			if(isset($_SESSION['error'])){
-	        				echo "
-	        					<div class='callout callout-danger'>
-	        						".$_SESSION['error']."
-	        					</div>
-	        				";
-	        				unset($_SESSION['error']);
-	        			}
-
-	        			if(isset($_SESSION['success'])){
-	        				echo "
-	        					<div class='callout callout-success'>
-	        						".$_SESSION['success']."
-	        					</div>
-	        				";
-	        				unset($_SESSION['success']);
-	        			}
-	        		?>
-	        		</div>
+<div class="container">
+        <div class="row mt-2">
+	        	<div class="col-lg-12 col-md-12">
+      <?php
+        if(isset($_SESSION['error'])){
+          echo "
+            <div class='alert alert-danger alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+             
+              ".$_SESSION['error']."
             </div>
-        <div class="row justify-content-md-center">
+          ";
+          unset($_SESSION['error']);
+        }
+        if(isset($_SESSION['success'])){
+          echo "
+            <div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+             
+              ".$_SESSION['success']."
+            </div>
+          ";
+          unset($_SESSION['success']);
+        }
+      ?>
+      </div>
+            </div>
+        <div class="row mb-4">
             <div class="col-sm-1" style='font-size: 100px'><i class="fa fa-user" aria-hidden="true"></i>
             </div>
-            <div class="col-sm-6 mt-3">
+            <div class="col-md-6 mt-3">
             <div class="row mt-4 ml-2">
-            <div class="col-sm-7 col-md-4 mr-2">
+            <div class="col-lg-4 col-md-6 mr-2">
             	<h4>Имя:</h4>
 	        	<h4>Email:</h4>
 	        	<h4>Контакты:</h4>
@@ -53,14 +56,14 @@
 	       </div>
             </div>
             <div class="row mt-2 ml-2">
-            <div class="col-lg-4 col-md-6  mt-2">
-            <a href="#edit" class="btn btn btn-info btn-block" data-toggle="modal"><i class="fa fa-edit"></i> Редактировать</a>
+            <div class="col-lg-5 col-md-7  mt-2">
+            <a href="#edit" class="btn btn btn-outline-info btn-block" data-toggle="modal"><i class="fa fa-edit"></i> Редактировать</a>
             </div>
             </div>
 	     
 	    </div>
 	  </div>
-        <div clas="row justify-content-md-center">
+        <div clas="row mt-4">
         <h4 ><i class="fa fa-calendar"></i> <b>История заказов</b></h4>
         <table class="table mt-4">
   <thead>
@@ -92,8 +95,8 @@
 	        				<td class='hidden'></td>
 	        				<td>".date('M d, Y', strtotime($row['sales_date']))."</td>
 	        				<td>".$row['pay_id']."</td>
-	        				<td>&#36; ".number_format($total)."</td>
-	        				<td><button  data-toggle='modal' data-target='#transaction' class='btn btn-sm btn-info transact' data-id='".$row['id']."'><i class='fa fa-search'></i> Показать</button></td>
+	        				<td>".number_format($total)." руб.</td>
+	        				<td><button  data-toggle='modal' data-target='#transaction' class='btn btn-sm btn-outline-info transact' data-id='".$row['id']."'><i class='fa fa-search'></i> Показать</button></td>
                         </tr>
 	        		";
 	        		}

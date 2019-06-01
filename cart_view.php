@@ -1,28 +1,23 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
-
+<body class="hold-transition">
 	<?php include 'includes/navbar.php'; ?>
-	 
-	  <div class="content-wrapper">
-	    <div class="container">
-
-	      <!-- Main content -->
-	      <section class="content">
+	    <div class="container-fluid">
 	        <div class="row">
-	        	<div class="col-sm-9">
-	        		<h1 class="page-header">YOUR CART</h1>
-	        		<div class="box box-solid">
-	        			<div class="box-body">
-		        		<table class="table table-bordered">
+	        	<div class="col-md-7 mx-auto">
+	        	  <div class="container">
+                    <div class="h2 row mt-4 font-weight-bold ">Корзина</div>
+                    <div class="row mt-2">
+		        		<table class="table">
 		        			<thead>
+		        			<tr>
 		        				<th></th>
-		        				<th>Photo</th>
-		        				<th>Name</th>
-		        				<th>Price</th>
-		        				<th width="20%">Quantity</th>
-		        				<th>Subtotal</th>
+		        				<th>Фотография </th>
+		        				<th>Название</th>
+		        				<th>Цена</th>
+		        				<th width="20%">Количество</th>
+		        				<th>Всего</th>
+                            <tr>
 		        			</thead>
 		        			<tbody id="tbody">
 		        			</tbody>
@@ -32,29 +27,28 @@
 	        		<?php
 	        			if(isset($_SESSION['user'])){
                                 echo '
-	        					<div class="col-sm-2">
-          			<div id="pay-button" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i> Pay</div>
-        		</div>
+	        					<div class="col-md-4 col-lg-3">
+                                <div id="pay-button" class="btn btn-outline-info btn-block">Оплатить</div>
+                                </div>
 	        				';
 	        			}
 	        			else{
 	        				echo "
-	        					<h4>You need to <a href='login.php'>Login</a> to checkout.</h4>
+	        				<div class='col-md-3 col-lg-3'>
+	        				<a href='login.php' class='btn btn-outline-info btn-block'>Оплатить</a>
+                            </div>
+	        					
 	        				";
 	        			}
 	        		?>
 	        	</div>
-	        	<div class="col-sm-3">
-	        		<?php include 'includes/sidebar.php'; ?>
-	        	</div>
-	        </div>
-	      </section>
+                <?php include 'includes/sidebar.php'; ?>
+            </div>
+        </div>
+	    
 	     
-	    </div>
-	  </div>
-  	<?php $pdo->close(); ?>
-  	<?php include 'includes/footer.php'; ?>
-</div>
+	    
+<?php $pdo->close(); ?>
 
 <?php include 'includes/scripts.php'; ?>
 <script>

@@ -1,33 +1,17 @@
 <?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue sidebar-mini">
- 
-<div class="wrapper">
+<?php include '../includes/header.php'; ?>
+<body class="hold-transition">
+ <?php include 'includes/navbar.php'; ?>
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Users
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Users</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
+<div class="container">
+<div class="row mt-2">
+<div class="col-md-12">
       <?php
         if(isset($_SESSION['error'])){
           echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+             
               ".$_SESSION['error']."
             </div>
           ";
@@ -37,28 +21,28 @@
           echo "
             <div class='alert alert-success alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-check'></i> Success!</h4>
+             
               ".$_SESSION['success']."
             </div>
           ";
           unset($_SESSION['success']);
         }
       ?>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
-            </div>
-            <div class="box-body">
-              <table id="example1" class="table table-bordered">
+      </div>
+</div>
+<div class="row mt-4 ">
+<div class="h2 col-lg-3  col-md-5 font-weight-bold ">Пользователи </div> 
+<div class="col-md-3 ml-3 mt-1">  <a  href= "#add" data-target="#add" data-toggle="modal" class="btn btn-outline-success btn-block"><i class="fa fa-plus"></i> Добавить</a></div>
+</div>
+<div class="row mt-4">
+
+              <table id="example1" class="table ">
                 <thead>
-                  <th>Photo</th>
-                  <th>Email</th>
-                  <th>Name</th>
-                  <th>Status</th>
-                  <th>Date Added</th>
-                  <th>Tools</th>
+                  <th  scope="col">Фото</th>
+                  <th  scope="col">Email</th>
+                  <th  scope="col">Имя </th>
+                  <th  scope="col">Дата регистрации</th>
+                  <th  scope="col" colspan="3" class="ml-4">Инструменты</th>
                 </thead>
                 <tbody>
                   <?php
@@ -69,26 +53,19 @@
                       $stmt->execute(['type'=>0]);
                       foreach($stmt as $row){
                         $image = (!empty($row['photo'])) ? '../images/'.$row['photo'] : '../images/profile.jpg';
-                        $status = ($row['status']) ? '<span class="label label-success">active</span>' : '<span class="label label-danger">not verified</span>';
-                        $active = (!$row['status']) ? '<span class="pull-right"><a href="#activate" class="status" data-toggle="modal" data-id="'.$row['id'].'"><i class="fa fa-check-square-o"></i></a></span>' : '';
                         echo "
-                          <tr>
-                            <td>
+                          <tr >
+                            <th  scope='row ' class='font-weight-light'>
                               <img src='".$image."' height='30px' width='30px'>
                               <span class='pull-right'><a href='#edit_photo' class='photo' data-toggle='modal' data-id='".$row['id']."'><i class='fa fa-edit'></i></a></span>
-                            </td>
-                            <td>".$row['email']."</td>
-                            <td>".$row['firstname'].' '.$row['lastname']."</td>
-                            <td>
-                              ".$status."
-                              ".$active."
-                            </td>
-                            <td>".date('M d, Y', strtotime($row['created_on']))."</td>
-                            <td>
-                              <a href='cart.php?user=".$row['id']."' class='btn btn-info btn-sm btn-flat'><i class='fa fa-search'></i> Cart</a>
-                              <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>
-                              <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Delete</button>
-                            </td>
+                            </th>
+                            <th class='font-weight-light'>".$row['email']."</th>
+                            <th class='font-weight-light'>".$row['firstname'].' '.$row['lastname']."</th>
+                            <th class='font-weight-light'>".date('M d, Y', strtotime($row['created_on']))."</th>
+                            <th class='font-weight-light'>
+                            <button class='col-md-10 mb-2 col-lg-5 btn btn-outline-info edit ml-4' data-id='".$row['id']."' data-toggle='modal' data-target='#edit'><i class='fa fa-edit'></i> Редактировать</button>
+                              <button class='col-md-10 mb-2 col-lg-5 btn btn-outline-danger delete ml-4' data-id='".$row['id']."' data-toggle='modal' data-target='#delete'><i class='fa fa-trash'></i> Удалить</button>
+                            </th>
                           </tr>
                         ";
                       }
@@ -103,17 +80,9 @@
               </table>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-     
-  </div>
-  	<?php include 'includes/footer.php'; ?>
-    <?php include 'includes/users_modal.php'; ?>
+       
 
-</div>
-<!-- ./wrapper -->
-
+<?php include 'includes/users_modal.php'; ?>
 <?php include 'includes/scripts.php'; ?>
 <script>
 $(function(){
@@ -138,11 +107,6 @@ $(function(){
     getRow(id);
   });
 
-  $(document).on('click', '.status', function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    getRow(id);
-  });
 
 });
 

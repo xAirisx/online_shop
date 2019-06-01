@@ -1,4 +1,4 @@
-<div class="col-md-3 mt-4 mr-3">
+<div class="col-md-4 col-lg-3 mt-4 mr-4">
 <ul class="list-group">
 <li class="list-group-item  list-group-item-info h3"><b>Рекомендуем вам</b></li>
 

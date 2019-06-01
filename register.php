@@ -39,10 +39,19 @@
                 
 				try{
 						$stmt = $conn->prepare("INSERT INTO users (email, password, firstname, lastname, created_on, address, status) VALUES (:email, :password, :firstname, :lastname, :now, :address, :status)");
-					$stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'now'=>$now, 'address'=>"", 'status'=>1]);
+                        $stmt->execute(['email'=>$email, 'password'=>$password, 'firstname'=>$firstname, 'lastname'=>$lastname, 'now'=>$now, 'address'=>"", 'status'=>1]);
+                        $_SESSION['success'] = ' Пользователь успешно добавлен ';
+                         header('location: index.php');
                 }
                 catch(PDOException $e) {
-                    
+                     $output .= '
+                            <div class="alert alert-danger">
+                                <h4><i class="icon fa fa-warning"></i> Error!</h4>
+                                '.$e->getMessage().'
+                            </div>
+                            
+                            header("location: index.php");
+                        ';
                 }
             }
     

@@ -1,51 +1,33 @@
 <?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<?php include '../includes/header.php'; ?>
+<body class="hold-transition">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+<?php include 'includes/navbar.php'; ?>
+ 
+<div class="container">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Sales History
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Sales</li>
-      </ol>
-    </section>
+<div class="h2 row mt-4  col-md-12 font-weight-bold ">История продаж </div> 
+<div class="row mt-4 ml-1">
+    <form method="POST" class="form-inline" action="sales_print.php">
+       <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+        </div>
+            <input type="text" class="form-control col-md-10" id="reservation" name="date_range">
+       </div>
+        <button  type="submit" class="btn btn-outline-success mb-3 ml-4" name="print">Печать</button>
+       </form>
+ </div>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <div class="pull-right">
-                <form method="POST" class="form-inline" action="sales_print.php">
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range">
-                  </div>
-                  <button type="submit" class="btn btn-success btn-sm btn-flat" name="print"><span class="glyphicon glyphicon-print"></span> Print</button>
-                </form>
-              </div>
-            </div>
-            <div class="box-body">
-              <table id="example1" class="table table-bordered">
+ <div class="row mt-4">          
+              <table class="table">
                 <thead>
-                  <th class="hidden"></th>
-                  <th>Date</th>
-                  <th>Buyer Name</th>
-                  <th>Transaction#</th>
-                  <th>Amount</th>
-                  <th>Full Details</th>
+                  <th >Дата</th>
+                  <th >Имя покупателя</th>
+                  <th >Номер заказа</th>
+                  <th >Количество</th>
+                  <th >Все детали</th>
+                  
                 </thead>
                 <tbody>
                   <?php
@@ -64,12 +46,11 @@
                         }
                         echo "
                           <tr>
-                            <td class='hidden'></td>
                             <td>".date('M d, Y', strtotime($row['sales_date']))."</td>
                             <td>".$row['firstname'].' '.$row['lastname']."</td>
                             <td>".$row['pay_id']."</td>
-                            <td>&#36; ".number_format($total)."</td>
-                            <td><button type='button' class='btn btn-info btn-sm btn-flat transact' data-id='".$row['salesid']."'><i class='fa fa-search'></i> View</button></td>
+                            <td>".number_format($total)." руб.</td>
+                            <td><button type='button' data-toggle='modal' data-target='#transaction' class='col-lg-7 btn btn-outline-info btn-sm transact btn-block' data-id='".$row['salesid']."'><i class='fa fa-search'></i> View</button></td>
                           </tr>
                         ";
                       }
@@ -82,18 +63,10 @@
                   ?>
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-     
-  </div>
-  	<?php include 'includes/footer.php'; ?>
-    <?php include '../includes/profile_modal.php'; ?>
-
 </div>
-<!-- ./wrapper -->
+          </div>
+
+<?php include '../includes/profile_modal.php'; ?>
 
 <?php include 'includes/scripts.php'; ?>
 <!-- Date Picker -->
@@ -109,15 +82,10 @@ $(function(){
     format: 'yyyy-mm-dd'
   })
 
-  //Timepicker
-  $('.timepicker').timepicker({
-    showInputs: false
-  })
 
   //Date range picker
   $('#reservation').daterangepicker()
-  //Date range picker with time picker
-  $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+
   //Date range as a button
   $('#daterange-btn').daterangepicker(
     {

@@ -1,47 +1,33 @@
+
 <header class="main-header">
-  <!-- Logo -->
-  <a href="#" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>C</b>P</span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Volt</b></span>
-  </a>
-  <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top">
-    <!-- Sidebar toggle button-->
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-      <span class="sr-only">Toggle navigation</span>
-    </a>
-
-    <div class="navbar-custom-menu">
-      <ul class="nav navbar-nav">
-        <!-- User Account: style can be found in dropdown.less -->
-        <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?php echo (!empty($admin['photo'])) ? '../images/'.$admin['photo'] : '../images/profile.jpg'; ?>" class="user-image" alt="User Image">
-            <span class="hidden-xs"><?php echo $admin['firstname'].' '.$admin['lastname']; ?></span>
-          </a>
-          <ul class="dropdown-menu">
-            <!-- User image -->
-            <li class="user-header">
-              <img src="<?php echo (!empty($admin['photo'])) ? '../images/'.$admin['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
-
-              <p>
-                <?php echo $admin['firstname'].' '.$admin['lastname']; ?>
-                <small>Member since <?php echo date('M. Y', strtotime($admin['created_on'])); ?></small>
-              </p>
-            </li>
-            <li class="user-footer">
-              <div class="pull-left">
-                <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Update</a>
-              </div>
-              <div class="pull-right">
-                <a href="../logout.php" class="btn btn-default btn-flat">Sign out</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+  <nav class="navbar navbar-light navbar-expand-md bg-warning justify-content-between" >
+     <a href="index.php" class="navbar-brand"><i class="fa fa-ravelry" aria-hidden="true"></i>
+        <b>SportOnline</b></a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+     </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item" ><a class="nav-link" href="home.php">Статистика</a></li>
+        <li class="nav-item" ><a class="nav-link" href="sales.php">Продажи</a></li>
+        <li class="nav-item" ><a class="nav-link" href="users.php">Пользователи</a></li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Товары
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="products.php">Список товаров</a>
+          <a class="dropdown-item" href="category.php">Список категорий</a>
+        </div>
+      </li>
+       </ul>
+       <ul class="navbar-nav ml-auto ">
+       <li  class="nav-item mt-3" ><b style="font-size: 15px"> <?php echo $admin['firstname'].' '.$admin['lastname']; ?></b></li>
+        <li  class="nav-item ml-2" ><a style="font-size: 35px" href="#profile" data-toggle="modal" title="Профиль" class="nav-item text-dark" id="admin_profile"><i class="fa fa-user" aria-hidden="true"></i></a></li>       
+        <li  class="nav-item ml-3 mt-1" ><a style="font-size: 30px" href="../logout.php" title="Выход" class="nav-item ml-1 text-dark"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a></li>         
+      
+        </ul>
+ 
     </div>
   </nav>
 </header>

@@ -36,19 +36,19 @@
 
 	        <div class="row justify-content-md-center">
 	        	<div class="col-sm-6 mt-4">
-	        		<div class="callout" id="callout" style="display:none">
+	        		<div class="alert alert-info" role="alert" id="callout" style="display:none">
 	        			<button type="button" class="close"><span aria-hidden="true">&times;</span></button>
 	        			<span class="message"></span>
 	        		</div>
 		            <div class="row">
-		            	<div class="col-md-6">
+		            	<div class="col-md-6 col-lg-4">
 		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%">
 		            	</div>
 		            	<div class="col-md-6">
-		            		<h1 class="page-header"><?php echo $product['prodname']; ?></h1>
-		            		<h3><b>&#36; <?php echo number_format($product['price']); ?></b></h3>
-		            		<p><b>Category:</b> <a href="category.php?category=<?php echo $product['slug']; ?>"><?php echo $product['catname']; ?></a></p>
-		            		<p><b>Description:</b></p>
+		            		<div  class="h1 mb-2"><?php echo $product['prodname']; ?></div>
+		            		<div class="h3 mt-2 text-danger font-weight-bold"><?php echo number_format($product['price']); ?> руб.</div>
+		            		<div class="h4 mt-2 text-dark">Категория: <a href="category.php?category=<?php echo $product['slug']; ?>"><?php echo $product['catname']; ?></a></div>
+		            		<div class="h4 mt-2">Описание:</div>
 		            		<p><?php echo $product['description']; ?></p>
 		            	</div>
 		            </div>
@@ -64,7 +64,7 @@
                             </div>
                             </div>
                             </div>
-                        <button type="submit" class="btn btn-lg btn-info"><i class="fa fa-shopping-cart"></i> В корзину</button>
+                        <button type="submit" class="btn btn-lg btn-outline-info"><i class="fa fa-shopping-cart"></i> В корзину</button>
 			            		
                     </form>
 		            </div>

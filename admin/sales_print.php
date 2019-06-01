@@ -21,7 +21,7 @@
 				<td>'.date('M d, Y', strtotime($row['sales_date'])).'</td>
 				<td>'.$row['firstname'].' '.$row['lastname'].'</td>
 				<td>'.$row['pay_id'].'</td>
-				<td align="right">&#36; '.number_format($amount).'</td>
+				<td align="right">'.number_format($amount).'</td>
 			</tr>
 			';
 		}
@@ -29,7 +29,7 @@
 		$contents .= '
 			<tr>
 				<td colspan="3" align="right"><b>Total</b></td>
-				<td align="right"><b>&#36; '.number_format($total).'</b></td>
+				<td align="right"><b>'.number_format($total).'</b></td>
 			</tr>
 		';
 		return $contents;
@@ -81,7 +81,7 @@
 
 	}
 	else{
-		$_SESSION['error'] = 'Need date range to provide sales print';
+		$_SESSION['error'] = 'Необходимо ввести диапазон дат';
 		header('location: sales.php');
 	}
 ?>

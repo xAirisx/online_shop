@@ -41,7 +41,7 @@
                 <input type="password" class="form-control" name="password" placeholder="Пароль" required>
             </div>
 
-          	<button type="submit" class="btn btn-block btn-warning" name="login" value="true">Войти</button>
+          	<button type="submit" class="btn btn-block btn-warning text-white" name="login" value="true">Войти</button>
     	</form>
       <br>
       <a href="signup.php" class="text-center">Зарегестрироваться</a><br>

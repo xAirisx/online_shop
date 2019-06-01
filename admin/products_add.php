@@ -36,7 +36,7 @@
 			try{
 				$stmt = $conn->prepare("INSERT INTO products (category_id, name, description, slug, price, photo) VALUES (:category, :name, :description, :slug, :price, :photo)");
 				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename]);
-				$_SESSION['success'] = 'Product added successfully';
+				$_SESSION['success'] = 'Товар успешно добавлен';
 
 			}
 			catch(PDOException $e){
@@ -48,7 +48,7 @@
 		}
 	}
 	else{
-		$_SESSION['error'] = 'Fill up product form first';
+		$_SESSION['error'] = 'Сначала заполните форму';
 	}
 
 	header('location: products.php');

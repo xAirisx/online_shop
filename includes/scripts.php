@@ -21,13 +21,7 @@
     CKEDITOR.replace('editor1')
   });
 </script>
-<!--Magnify -->
-<script src="magnify/magnify.min.js"></script>
-<script>
-$(function(){
-	$('.zoom').magnify();
-});
-</script>
+
 <!-- Custom Scripts -->
 <script>
 $(function(){

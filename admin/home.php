@@ -8,31 +8,15 @@
   if(isset($_GET['year'])){
     $year = $_GET['year'];
   }
-
   $conn = $pdo->open();
 ?>
-<?php include 'includes/header.php'; ?>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<?php include '../includes/header.php'; ?>
+<?php include 'includes/navbar.php'; ?>
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
+<body class="hold-transition">
+<div class="container">
+ <div class="h2 row mt-4 font-weight-bold ">Статистика продаж</div>     
       <?php
         if(isset($_SESSION['error'])){
           echo "
@@ -57,11 +41,18 @@
       ?>
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <?php
+      <table class="table mt-3 ">
+            <thead class="table-info">
+                <tr>
+                <th scope="col"> <i class="fa fa-shopping-cart mr-2"></i>Общая прибыль    </th>
+                <th scope="col"> <i class="fa fa-barcode mr-2"></i>Количество проданных товаров</th>
+                <th scope="col"><i class="fa fa-users mr-2"></i>Количество пользователей</th>
+                <th scope="col"><i class="fa fa-money mr-2"></i>Продажи сегодня</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row"> <?php
                 $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id");
                 $stmt->execute();
 
@@ -71,61 +62,24 @@
                   $total += $subtotal;
                 }
 
-                echo "<h3>&#36; ".number_format_short($total)."</h3>";
-              ?>
-              <p>Total Sales</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
-            </div>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <?php
+                echo "<span class='h3'>".number_format_short($total)." руб.</span>";
+              ?></th>
+                <th><?php
                 $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products");
                 $stmt->execute();
                 $prow =  $stmt->fetch();
 
                 echo "<h3>".$prow['numrows']."</h3>";
-              ?>
-          
-              <p>Number of Products</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-barcode"></i>
-            </div>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
+              ?></th>
+                <th>
               <?php
                 $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM users");
                 $stmt->execute();
                 $urow =  $stmt->fetch();
 
-                echo "<h3>".$urow['numrows']."</h3>";
-              ?>
-             
-              <p>Number of Users</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <?php
+                echo "<h3>  ".$urow['numrows']."</h3>";
+              ?></th>
+                <th><?php
                 $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
                 $stmt->execute(['sales_date'=>$today]);
 
@@ -135,30 +89,21 @@
                   $total += $subtotal;
                 }
 
-                echo "<h3>&#36; ".number_format_short($total)."</h3>";
+                echo "<h3>".number_format_short($total)." руб.</h3>";
                 
-              ?>
-
-              <p>Sales Today</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-          </div>
+              ?></th>
+                </tr>
+            </tbody>
+            </table>
         </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
+       
       <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Monthly Sales Report</h3>
-              <div class="box-tools pull-right">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label>Select Year: </label>
-                    <select class="form-control input-sm" id="select_year">
+        <div class="container">
+        <div class="row">
+        <div class="h2 col-md-8 mt-4 font-weight-bold ">Ежемесячный отчет о продажах</div>
+        <div class="col-md-3 mt-4">
+        <label  class="input-group-text bg-warning text-dark font-weight-bold" for="select_year">Год</label>  
+                    <select class="custom-select" id="select_year">
                       <?php
                         for($i=2015; $i<=2065; $i++){
                           $selected = ($i==$year)?'selected':'';
@@ -168,30 +113,19 @@
                         }
                       ?>
                     </select>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <br>
-                <div id="legend" class="text-center"></div>
-                <canvas id="barChart" style="height:350px"></canvas>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>        
+        </div>
+       </div>
+       <div class="row mt-4">
+        <div class="col-md-12 col-lg-9">
+        <canvas id="barChart" style="height:350px"></canvas>
+        </div>
+         </div>
+            </div>
+    
 
-      </section>
-      <!-- right col -->
-    </div>
-  	<?php include 'includes/footer.php'; ?>
 
-</div>
-<!-- ./wrapper -->
-
-<!-- Chart Data -->
 <?php
   $months = array();
   $sales = array();
@@ -232,8 +166,8 @@ $(function(){
     datasets: [
       {
         label               : 'SALES',
-        fillColor           : 'rgba(60,141,188,0.9)',
-        strokeColor         : 'rgba(60,141,188,0.8)',
+        fillColor           : 'rgba(23, 162, 184,0.9)',
+        strokeColor         : 'rgba(23, 162, 184,0.8)',
         pointColor          : '#3b8bba',
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',

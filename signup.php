@@ -33,23 +33,23 @@
 
     	<form class="card-text" action="register.php" method="POST">
           <div class="form-group ">
-            <input type="text" class="form-control" name="firstname" placeholder="Firstname" value="<?php echo (isset($_SESSION['firstname'])) ? $_SESSION['firstname'] : '' ?>"  minlength="2" required>
+            <input type="text" class="form-control" name="firstname" placeholder="Имя " value="<?php echo (isset($_SESSION['firstname'])) ? $_SESSION['firstname'] : '' ?>"  minlength="2" required>
            
           </div>
           <div class="form-group ">
-            <input type="text" class="form-control" name="lastname" placeholder="Lastname" value="<?php echo (isset($_SESSION['lastname'])) ? $_SESSION['lastname'] : '' ?>" minlength="2" required>
+            <input type="text" class="form-control" name="lastname" placeholder="Фамилия " value="<?php echo (isset($_SESSION['lastname'])) ? $_SESSION['lastname'] : '' ?>" minlength="2" required>
 
           </div>
       		<div class="form-group ">
         		<input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo (isset($_SESSION['email'])) ? $_SESSION['email'] : '' ?>" required>
       		</div>
           <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" minlength="5" required>
+            <input type="password" class="form-control" name="password" placeholder="Пароль " minlength="5" required>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="repassword" placeholder="Retype password" required>
+            <input type="password" class="form-control" name="repassword" placeholder="Повторите пароль" required>
           </div>
-            <button type="submit" class="btn btn-block btn-warning" name="signup" value="1"><i class="fa fa-pencil"></i> Зарегестрироваться</button>
+            <button type="submit" class="btn btn-block btn-warning text-white" name="signup" value="1"><i class="fa fa-pencil"></i> Зарегестрироваться</button>
       		</div>
             
             <div class="card-body">

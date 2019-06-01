@@ -31,7 +31,7 @@
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default  btn-warning pull-left" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
@@ -111,8 +111,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-warning" data-dismiss="modal">Закрыть</button>
-              <button type="submit" class="btn btn-success" name="edit"> Сохранить</button>
+               <button type="submit" class="btn btn-outline-success" name="edit"> Сохранить</button>
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Закрыть</button>
               </form>
             </div>
         </div>
