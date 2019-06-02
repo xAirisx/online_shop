@@ -74,21 +74,20 @@
 				$total += $subtotal;
 				$output .= "
 					<tr>
-						<td><button type='button' data-id='".$row['productid']."' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
-						<td><img src='".$image."' width='30px' height='30px'></td>
+						<td><div  data-id='".$row['cartid']."' class='btn text-danger btn-lg cart_delete'><i class='fa fa-remove'></i></div></td>
+						<td><img src='".$image."' width='30px'></td>
 						<td>".$product['name']."</td>
-						<td>&#36; ".number_format($product['price'])."</td>
-						<td class='input-group'>
-							<span class='input-group-btn'>
-            					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['productid']."'><i class='fa fa-minus'></i></button>
-            				</span>
-            				<input type='text' class='form-control' value='".$row['quantity']."' id='qty_".$row['productid']."'>
-				            <span class='input-group-btn'>
-				                <button type='button' id='add' class='btn btn-default btn-flat add' data-id='".$row['productid']."'><i class='fa fa-plus'></i>
-				                </button>
-				            </span>
+						<td>".number_format($product['price'])." руб.</td>
+						<td class='btn-group mr-2 col-md-6' role='group'>
+                            <button type='button' id='minus' class='btn btn-sm btn-light minus' data-id='".$row['cartid']."'><i class='fa fa-minus'></i></button>
+                            <input type='text' class='form-control' value='".$row['quantity']."' id='qty_".$row['cartid']."'>
+                            <button type='button' id='add' class='btn btn-sm btn-light add' data-id='".$row['cartid']."'><i class='fa fa-plus'></i>
+				                </button> 
+                            </div>
+                            </div>
+                            </div>
 						</td>
-						<td>&#36; ".number_format($subtotal)."</td>
+						<td>".number_format($subtotal)." руб.</td>
 					</tr>
 				";
 				
@@ -97,7 +96,7 @@
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>
-					<td><b>&#36; ".number_format($total)."</b></td>
+					<td><b>".number_format($total)." руб.</b></td>
 				<tr>
 			";
 		}

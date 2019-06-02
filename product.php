@@ -41,7 +41,7 @@
 	        			<span class="message"></span>
 	        		</div>
 		            <div class="row">
-		            	<div class="col-md-6 col-lg-4">
+		            	<div class="col-md-6 mt-4 col-lg-5">
 		            		<img src="<?php echo (!empty($product['photo'])) ? 'images/'.$product['photo'] : 'images/noimage.jpg'; ?>" width="100%">
 		            	</div>
 		            	<div class="col-md-6">

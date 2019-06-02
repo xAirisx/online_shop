@@ -1,7 +1,7 @@
 
 <header class="main-header">
   <nav class="navbar navbar-light navbar-expand-md bg-warning justify-content-between" >
-     <a href="index.php" class="navbar-brand"><i class="fa fa-ravelry" aria-hidden="true"></i>
+     <a href="home.php" class="navbar-brand"><i class="fa fa-ravelry" aria-hidden="true"></i>
         <b>SportOnline</b></a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>

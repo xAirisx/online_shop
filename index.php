@@ -71,7 +71,7 @@
 										  <img class='card-img-top'   src='".$image."' alt='Card image cap'>
 										  <div class='card-body'>
 										    <h5 class='card-title text-dark'> <a clas='text-dark' href='product.php?product=".$row['slug']."'>".$row['name']."</a></h5>
-                                            <b class='text-dark'>&#36;".number_format($row['price'])."</b>
+                                            <b class='text-dark'>".number_format($row['price'])." руб.</b>
 										  </div>
 											
 										</div>
